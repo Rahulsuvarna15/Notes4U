@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Uploaded Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://t4.ftcdn.net/jpg/07/70/25/79/240_F_770257927_66LEDCX7eiYdSUOiS2x0mHQpIoWOZwdd.jpg');
+            background-size: cover;
+            background-position: top center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        .container {
+            width: 70%;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .note-item {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .note-program {
+            font-size: 16px;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .view-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+
+        .no-notes {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Uploaded College Notes</h2>
+
+        <?php if (count($notes) > 0): ?>
+            <?php foreach ($notes as $note): ?>
+                <div class="note-item">
+                    <div class="note-title"><?php echo htmlspecialchars($note['title']); ?></div>
+                    <div class="note-program">Program: <?php echo htmlspecialchars($note['program']); ?></div>
+                    <div class="note-type">Type: <?php echo htmlspecialchars($note['note_type']); ?></div>
+
+                    <a href="view_note_content.php?id=<?php echo $note['id']; ?>" class="view-button">View Note</a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="no-notes">No notes have been uploaded yet.</div>
+        <?php endif; ?>
+    </div>
+
+</body>
+</html>
